@@ -66,13 +66,13 @@ function sendToStorage(task) {
 	localStorage.setItem(task.id, JSON.stringify(task))
 }
 
-$("#new-task-article").on("input", '.new-task-header', function() {
+$(".new-task-container").on("input", '.new-task-header', function() {
 	var id = $(this).parent().parent().prop('id');
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	parsedObject.title = $(this).val()
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
-$("#new-task-article").on("input", '.new-task-body', function() {
+$(".new-task-container").on("input", '.new-task-body', function() {
 	var id = $(this).parent().parent().prop('id');
 	console.log(id)
 	var parsedObject = JSON.parse(localStorage.getItem(id))
@@ -85,7 +85,7 @@ $("#new-task-article").on("input", '.new-task-body', function() {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
-$("#new-task-article").on("click", ".upvote-image", function() {
+$(".new-task-container").on("click", ".upvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	var parshedQuality = grabObject(id).quality
@@ -102,7 +102,7 @@ $("#new-task-article").on("click", ".upvote-image", function() {
 	}
 })
 
-$("#new-task-article").on("click", ".downvote-image", function() {
+$(".new-task-container").on("click", ".downvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	console.log("newobj" + newObject)
@@ -120,7 +120,7 @@ $("#new-task-article").on("click", ".downvote-image", function() {
 	}
 })
 
-$("#new-task-article").on('click', '.delete-image', function() {
+$(".new-task-container").on('click', '.delete-image', function() {
 	localStorage.removeItem($(this).parent().parent().prop('id'));
 	$(this).parent().parent().remove('.new-task-article');
 });
@@ -131,8 +131,9 @@ $("#new-task-article").on('click', '.delete-image', function() {
 
 function prepend(task) {
 	console.log(task.id);
-	$("#new-task-article").prepend(`
+	$(".new-task-container").prepend(`
     <div id="${task.id}" class="new-task-article">
+		<button class="completed-btn" type="button">Not Complete</button>
 	    <div class="text-wrapper">
 				<p class="new-task-header">${task.title}</p>
 	    	<button class="delete-image" type="button" name="button"></button>
@@ -142,12 +143,11 @@ function prepend(task) {
 				<button class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
 	    	<h3 class="h3-footer">quality:</h3><h3>${task.quality}</h3>
-				<button class="completed-btn" type="button">Not Complete</button>
 	    </section>
     </div>
     `);
-	$('.input-title').val("Title")
-	$('.input-task').val("Task")
+	$('.input-title').val("")
+	$('.input-task').val("")
 }
 
 /*=======================================
