@@ -18,7 +18,7 @@ $('#input-title, #input-task').on('input', function() {
 	var inputTitleVal = $("#input-title").val()
 	var inputTaskVal = $("#input-task").val()
 
-	if (inputTitleVal == '' || inputTaskVal == ' ') {
+	if (inputTitleVal == '' || inputTaskVal == '') {
 		$("#button-save").attr("disabled", true)
 	} else if (inputTitleVal == 'Title') {
 		$("#button-save").attr("disabled", true)
@@ -133,10 +133,10 @@ function prepend(task) {
 	console.log(task.id);
 	$("#new-task-article").prepend(`
     <div id="${task.id}" class="new-task-article">
-	    <div class='text-wrapper'>
-				<input type="text" class='new-task-header' value='${task.title}' maxlength="30" size="35">
-	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
-				<textarea rows="4" cols="42" id='new-task-body' class='new-task-body' value="">${task.task}</textarea>
+	    <div class="text-wrapper">
+				<p class="new-task-header">${task.title}</p>
+	    	<button id="delete-image" class="delete-image" type="button" name="button"></button>
+				<p class="new-task-body">${task.task}</p>
 			</div>
 	    <section class="new-task-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
@@ -153,12 +153,12 @@ function prepend(task) {
 >>>>>>>>  Key Press / Key Up Events <<<<<<<<
 ========================================*/
 
-$('#input-filter').on('keyup', function() {
+$('.input-filter').on('keyup', function() {
 	var filterInput = $(this).val().toLowerCase();
 	$('.text-wrapper').each(function() {
 		var cardText = $(this).text().toLowerCase();
 
-		if (cardText.indexOf(searchInput) != -1) {
+		if (cardText.indexOf(filterInput) != -1) {
 			$(this).parent().show();
 		} else {
 			$(this).parent().hide();
