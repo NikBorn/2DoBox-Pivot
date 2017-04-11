@@ -168,6 +168,7 @@ h2, .new-task-header {
   color:#939598;
   resize: none;
   border: none;
+  margin: 25px 0;
 }
 
 .new-task-footer {
