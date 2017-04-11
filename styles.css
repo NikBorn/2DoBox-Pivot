@@ -23,7 +23,7 @@ body {
 ========================================*/
 
 .header-wrapper {
-  width: 100vw;
+  width: 100%;
   background: #e5f3f2;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@ header, h1 {
 ========================================*/
 
 .form {
-  width: 90vw;
+  width: 90%;
   display: flex;
   flex-direction: column;
   border: 0;
@@ -113,7 +113,7 @@ input[value="Task"]:focus {
 
 
 #input-search {
-  width: 90vw;
+  width: 90%;
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   color:#D1D3D4;
@@ -130,7 +130,7 @@ input[value="Task"]:focus {
 ========================================*/
 
 .new-task-article {
-  width: 90vw;
+  width: 90%;
   margin: auto;
   /*border-bottom: 2px solid #D1D3D4;*/
 }
