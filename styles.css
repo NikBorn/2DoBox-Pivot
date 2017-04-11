@@ -40,7 +40,7 @@ header, h1 {
   justify-content: center;
 }
 
-.h1-idea {
+.h1-task {
   color: #00a79d;
 }
 
@@ -74,7 +74,7 @@ input[value="Title"]:focus {
   color: #939598;
 }
 
-.input-body {
+.input-task {
   width: 100%;
   height: 70px;
   font-family: 'Open Sans', sans-serif;
@@ -86,7 +86,7 @@ input[value="Title"]:focus {
   border: 2px solid #D1D3D4;
 }
 
-input[value="Body"]:focus {
+input[value="Task"]:focus {
   color: #939598;
 }
 
@@ -130,7 +130,7 @@ input[value="Body"]:focus {
 >>>>>>>>  article  <<<<<<<<
 ========================================*/
 
-.new-idea-article {
+.new-task-article {
   width: 90vw;
   margin: auto;
   /*border-bottom: 2px solid #D1D3D4;*/
@@ -140,7 +140,7 @@ input[value="Body"]:focus {
   margin-top: 12px;
 }
 
-h2, .new-idea-header {
+h2, .new-task-header {
   width: 200px;
   display: inline-block;
   font-family: 'Roboto Slab', serif;
@@ -164,7 +164,7 @@ h2, .new-idea-header {
   background-image: url("assets/delete.svg")
 }
 
-.new-idea-body {
+.new-task-body {
   font-size: 15px;
   color:#939598;
   resize: none;
@@ -172,7 +172,7 @@ h2, .new-idea-header {
 
 }
 
-.new-idea-footer {
+.new-task-footer {
   display: flex;
   align-items: center;
   margin: 12px 0 12px 0;
@@ -274,7 +274,7 @@ h1  {
   font-size: 38px;
 }
 
-.input-body {
+.input-task {
   width: 360px;
   height: 34px;
   padding: 5px;
@@ -296,7 +296,7 @@ h1  {
   margin-bottom: 10px;
 }
 
-.new-idea-article {
+.new-task-article {
   width: 360px;
   margin: auto;
 }

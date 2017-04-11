@@ -7,22 +7,22 @@ $(document).ready(function() {
 $('#input-title').on('click', function() {
 	$('#input-title').val(" ")
 })
-$('#input-body').on('click', function() {
-	$('#input-body').val(" ")
+$('#input-task').on('click', function() {
+	$('#input-task').val(" ")
 })
 $('#input-search').on('click', function() {
 	$('#input-search').val(" ")
 })
 
-$('#input-title, #input-body').on('input', function() {
+$('#input-title, #input-task').on('input', function() {
 	var inputTitleVal = $("#input-title").val()
-	var inputBodyVal = $("#input-body").val()
+	var inputTaskVal = $("#input-task").val()
 
-	if (inputTitleVal == '' || inputBodyVal == ' ') {
+	if (inputTitleVal == '' || inputTaskVal == ' ') {
 		$("#button-save").attr("disabled", true)
 	} else if (inputTitleVal == 'Title') {
 		$("#button-save").attr("disabled", true)
-	} else if (inputBodyVal == 'Body') {
+	} else if (inputTaskVal == 'Task') {
 		$("#button-save").attr("disabled", true)
 	} else {
 		$("#button-save").attr("disabled", false)
@@ -33,9 +33,9 @@ $('#input-title, #input-body').on('input', function() {
 >>>>>>>>  Constructor / New  <<<<<<<<
 ========================================*/
 
-function Idea(title, body) {
+function Task(title, task) {
 	this.title = title;
-	this.body = body;
+	this.task = task;
 	this.quality = "swill"
 	this.id = Date.now();
 }
@@ -43,10 +43,10 @@ function Idea(title, body) {
 
 $(".button-save").on("click", function() {
 	var title = $('#input-title').val();
-	var body = $("#input-body").val();
-	var idea = new Idea(title, body)
-	prepend(idea);
-	sendToStorage(idea);
+	var body = $("#input-task").val();
+	var task = new Task(title, body)
+	prepend(task);
+	sendToStorage(task);
 })
 
 /*=======================================
@@ -62,17 +62,17 @@ function storeObject(id, newObject) {
 	localStorage.setItem(id, JSON.stringify(newObject))
 }
 
-function sendToStorage(idea) {
-	localStorage.setItem(idea.id, JSON.stringify(idea))
+function sendToStorage(task) {
+	localStorage.setItem(task.id, JSON.stringify(task))
 }
 
-$("#new-idea-article").on("input", '.new-idea-header', function() {
+$("#new-task-article").on("input", '.new-task-header', function() {
 	var id = $(this).parent().parent().prop('id');
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	parsedObject.title = $(this).val()
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
-$("#new-idea-article").on("input", '.new-idea-body', function() {
+$("#new-task-article").on("input", '.new-task-body', function() {
 	var id = $(this).parent().parent().prop('id');
 	console.log(id)
 	var parsedObject = JSON.parse(localStorage.getItem(id))
@@ -85,7 +85,7 @@ $("#new-idea-article").on("input", '.new-idea-body', function() {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
-$("#new-idea-article").on("click", ".upvote-image", function() {
+$("#new-task-article").on("click", ".upvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	var parshedQuality = grabObject(id).quality
@@ -102,7 +102,7 @@ $("#new-idea-article").on("click", ".upvote-image", function() {
 	}
 })
 
-$("#new-idea-article").on("click", ".downvote-image", function() {
+$("#new-task-article").on("click", ".downvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	console.log("newobj" + newObject)
@@ -120,33 +120,33 @@ $("#new-idea-article").on("click", ".downvote-image", function() {
 	}
 })
 
-$("#new-idea-article").on('click', '.delete-image', function() {
+$("#new-task-article").on('click', '.delete-image', function() {
 	localStorage.removeItem($(this).parent().parent().prop('id'));
-	$(this).parent().parent().remove('.new-idea-article');
+	$(this).parent().parent().remove('.new-task-article');
 });
 
 /*=======================================
 >>>>>>>>  Prepend  <<<<<<<<
 ========================================*/
 
-function prepend(idea) {
-	console.log(idea.id);
-	$("#new-idea-article").prepend(`
-    <div id="${idea.id}" class="new-idea-article">
+function prepend(task) {
+	console.log(task.id);
+	$("#new-task-article").prepend(`
+    <div id="${task.id}" class="new-task-article">
 	    <div class='text-wrapper'>
-				<input type="text" class='new-idea-header' value='${idea.title}' maxlength="30" size="35">
+				<input type="text" class='new-task-header' value='${task.title}' maxlength="30" size="35">
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
-				<textarea rows="4" cols="42" id='new-idea-body' class='new-idea-body' value="">${idea.body}</textarea>
+				<textarea rows="4" cols="42" id='new-task-body' class='new-task-body' value="">${task.body}</textarea>
 			</div>
-	    <section class="new-idea-footer">
+	    <section class="new-task-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
-	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${idea.quality}</h3>
+	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${task.quality}</h3>
 	    </section>
     </div>
     `);
 	$('#input-title').val("Title")
-	$('#input-body').val("Body")
+	$('#input-task').val("Task")
 }
 
 /*=======================================
@@ -172,7 +172,7 @@ $("#input-title").keypress(function(e) {
 	}
 });
 
-$("#input-body").keypress(function(e) {
+$("#input-task").keypress(function(e) {
 	if (e.which == 13) {
 		$(this).blur()
 	}
@@ -184,7 +184,7 @@ $("#input-search").keypress(function(e) {
 	}
 });
 
-$(".new-idea-header").keypress(function(e) {
+$(".new-task-header").keypress(function(e) {
 	if (e.keyCode == 13) {
 		$(this).blur()
 	}
