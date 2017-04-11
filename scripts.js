@@ -47,6 +47,7 @@ $(".button-save").on("click", function() {
 	var task = new Task(title, task);
 	prepend(task);
 	sendToStorage(task);
+	$(".button-save").prop("disabled", true)
 });
 
 /*=======================================
