@@ -169,7 +169,6 @@ h2, .new-task-header {
   resize: none;
   border: none;
   margin: 25px 0;
-
 }
 
 .new-task-footer {
@@ -203,6 +202,15 @@ h2, .new-task-header {
   border: none;
   background-repeat: round;
   background-image: url("assets/downvote.svg")
+}
+
+.completed-btn {
+  background-color: #00A79D;
+  color: #FFFFFF;
+  height: 25px;
+  width: 100px;
+  margin: 0 10px 10px 135px;
+  border: none;
 }
 
 .h3-footer {
