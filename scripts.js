@@ -4,20 +4,9 @@ $(document).ready(function() {
 	}
 });
 
-$('.input-title').on('click', function() {
-	$('.input-title').val(" ")
-})
-$('.input-task').on('click', function() {
-	$('.input-task').val(" ")
-})
-$('.input-filter').on('click', function() {
-	$('.input-filter').val(" ")
-})
-
 $('.input-title, .input-task').on('input', function() {
 	var inputTitleVal = $(".input-title").val()
 	var inputTaskVal = $(".input-task").val()
-
 	if (inputTitleVal == '' || inputTaskVal == '') {
 		$(".button-save").attr("disabled", true)
 	} else if (inputTitleVal == 'Title') {
@@ -67,18 +56,18 @@ function sendToStorage(task) {
 	localStorage.setItem(task.id, JSON.stringify(task))
 }
 
-$(".new-task-container").on("input", '.new-task-header', function() {
-	var id = $(this).parent().parent().prop('id');
+$(".new-task-container").on("blur", '.new-task-header', function() {
+	var id = $(this).closest(".new-task-article").prop('id');
 	var parsedObject = JSON.parse(localStorage.getItem(id))
-	parsedObject.title = $(this).val()
+	parsedObject.title = $(this).text()
+	console.log(this)
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
-$(".new-task-container").on("input", '.new-task-body', function() {
-	var id = $(this).parent().parent().prop('id');
-	console.log(id)
+
+$(".new-task-container").on("blur", '.new-task-body', function() {
+	var id = $(this).closest(".new-task-article").prop('id');
 	var parsedObject = JSON.parse(localStorage.getItem(id))
-	console.log(parsedObject)
-	parsedObject.task = $(this).val()
+	parsedObject.task = $(this).text()
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
 
@@ -106,7 +95,6 @@ $(".new-task-container").on("click", ".upvote-image", function() {
 $(".new-task-container").on("click", ".downvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
-	console.log("newobj" + newObject)
 	var parshedQuality = grabObject(id).quality
 
 	if (parshedQuality == "genius") {
@@ -131,14 +119,13 @@ $(".new-task-container").on('click', '.delete-image', function() {
 ========================================*/
 
 function prepend(task) {
-	console.log(task.id);
 	$(".new-task-container").prepend(`
     <div id="${task.id}" class="new-task-article">
 		<button class="completed-btn" type="button">Not Complete</button>
 	    <div class="text-wrapper">
-				<p class="new-task-header">${task.title}</p>
+				<p class="new-task-header" contenteditable>${task.title}</p>
 	    	<button class="delete-image" type="button" name="button"></button>
-				<p class="new-task-body">${task.task}</p>
+				<p class="new-task-body" contenteditable>${task.task}</p>
 			</div>
 	    <section class="new-task-footer">
 				<button class="upvote-image" type="button" name="button"></button>
@@ -166,28 +153,3 @@ $('.input-filter').on('keyup', function() {
 		}
 	})
 })
-
-$('.input-filter').on('keyup', function() {
-    var searchInput = $(this).val().toLowerCase();
-    $('.text').each(function() {
-      var cardText = $(this).text().toLowerCase();
-
-      if (cardText.indexOf(searchInput) != -1) {
-        $(this).parent().show();
-      } else {
-        $(this).parent().hide();
-      }
-    })
-})
-
-$(".input-title").keypress(function(e) {
-	if (e.which == 13) {
-		$(".button-save").click()
-	}
-});
-
-$(".input-task").keypress(function(e) {
-	if (e.which == 13) {
-		$(".button-save").click()
-	}
-});
