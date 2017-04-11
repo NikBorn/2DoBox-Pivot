@@ -36,7 +36,7 @@ $('#input-title, #input-task').on('input', function() {
 function Task(title, task) {
 	this.title = title;
 	this.task = task;
-	this.quality = "swill"
+	this.quality = "swill";
 	this.id = Date.now();
 }
 
@@ -44,10 +44,10 @@ function Task(title, task) {
 $(".button-save").on("click", function() {
 	var title = $('#input-title').val();
 	var task = $("#input-task").val();
-	var task = new Task(title, task)
+	var task = new Task(title, task);
 	prepend(task);
 	sendToStorage(task);
-})
+});
 
 /*=======================================
 >>>>>>>>  localStorage  <<<<<<<<
@@ -142,6 +142,7 @@ function prepend(task) {
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
 	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${task.quality}</h3>
+				<button class="completed-btn" type="button">Not Complete</button>
 	    </section>
     </div>
     `);
@@ -153,17 +154,31 @@ function prepend(task) {
 >>>>>>>>  Key Press / Key Up Events <<<<<<<<
 ========================================*/
 
-$('#input-filter').on('keyup', function() {
+$('.input-filter').on('keyup', function() {
 	var filterInput = $(this).val().toLowerCase();
 	$('.text-wrapper').each(function() {
 		var cardText = $(this).text().toLowerCase();
-
-		if (cardText.indexOf(searchInput) != -1) {
+		console.log("this", this)
+		console.log(cardText, "cardText")
+		if (cardText.indexOf(filterInput) != -1) {
 			$(this).parent().show();
 		} else {
 			$(this).parent().hide();
 		}
 	})
+})
+
+$('.input-filter').on('keyup', function() {
+    var searchInput = $(this).val().toLowerCase();
+    $('.text').each(function() {
+      var cardText = $(this).text().toLowerCase();
+
+      if (cardText.indexOf(searchInput) != -1) {
+        $(this).parent().show();
+      } else {
+        $(this).parent().hide();
+      }
+    })
 })
 
 $("#input-title").keypress(function(e) {
