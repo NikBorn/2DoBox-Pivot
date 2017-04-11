@@ -1,13 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 h2 {font-size: 275%;}
 h3 {font-size: 250%;}
 h4 {font-size: 225%;}
 h5 {font-size: 200%;}
 h6 {font-size: 175%;}
-p {}
-
-* {
-  box-sizing: border-box;
-}
 
 /*=======================================
 >>>>>>>>  body  <<<<<<<<
