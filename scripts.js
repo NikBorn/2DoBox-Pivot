@@ -4,28 +4,28 @@ $(document).ready(function() {
 	}
 });
 
-$('#input-title').on('click', function() {
-	$('#input-title').val(" ")
+$('.input-title').on('click', function() {
+	$('.input-title').val(" ")
 })
-$('#input-task').on('click', function() {
-	$('#input-task').val(" ")
+$('.input-task').on('click', function() {
+	$('.input-task').val(" ")
 })
-$('#input-filter').on('click', function() {
-	$('#input-filter').val(" ")
+$('.input-filter').on('click', function() {
+	$('.input-filter').val(" ")
 })
 
-$('#input-title, #input-task').on('input', function() {
-	var inputTitleVal = $("#input-title").val()
-	var inputTaskVal = $("#input-task").val()
+$('.input-title, .input-task').on('input', function() {
+	var inputTitleVal = $(".input-title").val()
+	var inputTaskVal = $(".input-task").val()
 
 	if (inputTitleVal == '' || inputTaskVal == '') {
-		$("#button-save").attr("disabled", true)
+		$(".button-save").attr("disabled", true)
 	} else if (inputTitleVal == 'Title') {
-		$("#button-save").attr("disabled", true)
+		$(".button-save").attr("disabled", true)
 	} else if (inputTaskVal == 'Task') {
-		$("#button-save").attr("disabled", true)
+		$(".button-save").attr("disabled", true)
 	} else {
-		$("#button-save").attr("disabled", false)
+		$(".button-save").attr("disabled", false)
 	}
 })
 
@@ -42,8 +42,8 @@ function Task(title, task) {
 
 
 $(".button-save").on("click", function() {
-	var title = $('#input-title').val();
-	var task = $("#input-task").val();
+	var title = $('.input-title').val();
+	var task = $(".input-task").val();
 	var task = new Task(title, task);
 	prepend(task);
 	sendToStorage(task);
@@ -135,19 +135,19 @@ function prepend(task) {
     <div id="${task.id}" class="new-task-article">
 	    <div class="text-wrapper">
 				<p class="new-task-header">${task.title}</p>
-	    	<button id="delete-image" class="delete-image" type="button" name="button"></button>
+	    	<button class="delete-image" type="button" name="button"></button>
 				<p class="new-task-body">${task.task}</p>
 			</div>
 	    <section class="new-task-footer">
-				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
+				<button class="upvote-image" type="button" name="button"></button>
 				<button class="downvote-image" type="button" name="button"></button>
-	    	<h3 class="h3-footer">quality:</h3><h3 id="quality">${task.quality}</h3>
+	    	<h3 class="h3-footer">quality:</h3><h3>${task.quality}</h3>
 				<button class="completed-btn" type="button">Not Complete</button>
 	    </section>
     </div>
     `);
-	$('#input-title').val("Title")
-	$('#input-task').val("Task")
+	$('.input-title').val("Title")
+	$('.input-task').val("Task")
 }
 
 /*=======================================
@@ -179,13 +179,13 @@ $('.input-filter').on('keyup', function() {
     })
 })
 
-$("#input-title").keypress(function(e) {
+$(".input-title").keypress(function(e) {
 	if (e.which == 13) {
 		$(".button-save").click()
 	}
 });
 
-$("#input-task").keypress(function(e) {
+$(".input-task").keypress(function(e) {
 	if (e.which == 13) {
 		$(".button-save").click()
 	}
