@@ -10,8 +10,8 @@ $('#input-title').on('click', function() {
 $('#input-task').on('click', function() {
 	$('#input-task').val(" ")
 })
-$('#input-search').on('click', function() {
-	$('#input-search').val(" ")
+$('#input-filter').on('click', function() {
+	$('#input-filter').val(" ")
 })
 
 $('#input-title, #input-task').on('input', function() {
@@ -43,8 +43,8 @@ function Task(title, task) {
 
 $(".button-save").on("click", function() {
 	var title = $('#input-title').val();
-	var body = $("#input-task").val();
-	var task = new Task(title, body)
+	var task = $("#input-task").val();
+	var task = new Task(title, task)
 	prepend(task);
 	sendToStorage(task);
 })
@@ -77,7 +77,7 @@ $("#new-task-article").on("input", '.new-task-body', function() {
 	console.log(id)
 	var parsedObject = JSON.parse(localStorage.getItem(id))
 	console.log(parsedObject)
-	parsedObject.body = $(this).val()
+	parsedObject.task = $(this).val()
 	localStorage.setItem(id, JSON.stringify(parsedObject))
 })
 
@@ -136,7 +136,7 @@ function prepend(task) {
 	    <div class='text-wrapper'>
 				<input type="text" class='new-task-header' value='${task.title}' maxlength="30" size="35">
 	    	<button id='delete-image' class="delete-image" type="button" name="button"></button>
-				<textarea rows="4" cols="42" id='new-task-body' class='new-task-body' value="">${task.body}</textarea>
+				<textarea rows="4" cols="42" id='new-task-body' class='new-task-body' value="">${task.task}</textarea>
 			</div>
 	    <section class="new-task-footer">
 				<button id="upvote-image" class="upvote-image" type="button" name="button"></button>
@@ -153,8 +153,8 @@ function prepend(task) {
 >>>>>>>>  Key Press / Key Up Events <<<<<<<<
 ========================================*/
 
-$('#input-search').on('keyup', function() {
-	var searchInput = $(this).val().toLowerCase();
+$('#input-filter').on('keyup', function() {
+	var filterInput = $(this).val().toLowerCase();
 	$('.text-wrapper').each(function() {
 		var cardText = $(this).text().toLowerCase();
 
@@ -168,24 +168,12 @@ $('#input-search').on('keyup', function() {
 
 $("#input-title").keypress(function(e) {
 	if (e.which == 13) {
-		$(this).blur()
+		$(".button-save").click()
 	}
 });
 
 $("#input-task").keypress(function(e) {
 	if (e.which == 13) {
-		$(this).blur()
-	}
-});
-
-$("#input-search").keypress(function(e) {
-	if (e.which == 13) {
-		$(this).blur()
-	}
-});
-
-$(".new-task-header").keypress(function(e) {
-	if (e.keyCode == 13) {
-		$(this).blur()
+		$(".button-save").click()
 	}
 });
