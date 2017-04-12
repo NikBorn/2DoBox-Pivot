@@ -2,20 +2,14 @@
   box-sizing: border-box;
 }
 
-h2 {font-size: 275%;}
-h3 {font-size: 250%;}
-h4 {font-size: 225%;}
-h5 {font-size: 200%;}
-h6 {font-size: 175%;}
-
 /*=======================================
 >>>>>>>>  body  <<<<<<<<
 ========================================*/
 
 body {
   font-family: 'Open Sans', sans-serif;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 100%
 }
 
 /*=======================================
@@ -23,7 +17,6 @@ body {
 ========================================*/
 
 .header-wrapper {
-  width: 100%;
   background: #e5f3f2;
   display: flex;
   flex-direction: column;
@@ -33,7 +26,7 @@ body {
 header, h1 {
   color: #00a79d;
   font-family: 'Roboto Slab', serif;
-  font-size: 25px;
+  font-size: 38px;
   margin-top: 10px;
   display: inline-block;
   display: flex;
@@ -49,77 +42,43 @@ span {
 ========================================*/
 
 .form {
-  width: 90%;
   display: flex;
   flex-direction: column;
-  border: 0;
-  padding: 0;
+  width: 90%;
 }
 
-.input-title {
-  width: 100%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
+.input-title,
+.input-task,
+.input-filter {
+  border: 2px solid #D1D3D4;
   color:#D1D3D4;
-  justify-content: center;
-  margin-top: 15px;
-  padding: 5px;
-  border: 2px solid #D1D3D4;
-}
-input[value="Title"]:focus {
-  color: #939598;
-}
-
-.input-task {
-  width: 100%;
-  height: 70px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
-  color: #D1D3D4;
-  margin-top: 10px;
+  font-size: 20px;
+  margin: 20px auto 0;
   padding: 5px;
-  padding-bottom: 42px;
-  border: 2px solid #D1D3D4;
+  transition: 1s;
+  width: 360px;
 }
 
 .button-save {
-  width: 100%;
-  height: 30px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
+  margin: 20px auto 20px;
   color: white;
   background: #00a79d;
-  margin: 12px 0 15px 0;
-  padding: 0;
-  border: 0;
+  border: none;
+  border-radius: 25px;
+  width: 360px;
+
 }
 
 .button-save:disabled {
   background-color: #6D6E71;
 }
 
-/*=======================================
->>>>>>>>  section search  <<<<<<<<
-========================================*/
-
-.search {
-  font-family: 'Open Sans', sans-serif;
+.filter {
   display: flex;
   justify-content: center;
-}
-
-
-.input-filter {
-  width: 90%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
-  color:#D1D3D4;
-  margin: 15px 0 10px 0;
-  padding: 5px;
-  border: 2px solid #D1D3D4;
-}
-.input-filter:focus {
-  color: #939598;
 }
 
 /*=======================================
@@ -127,80 +86,13 @@ input[value="Title"]:focus {
 ========================================*/
 
 .new-task-article {
-  width: 90%;
-  margin: auto;
-  /*border-bottom: 2px solid #D1D3D4;*/
-  padding: 5px;
+  width: 360px;
+  margin: 30px auto;
 }
 
-.title-container {
-  margin-top: 12px;
-}
-
-h2, .new-task-header {
-  width: 100%;
-  display: inline-block;
-  font-family: 'Roboto Slab', serif;
-  color: #6d6371;
-  line-height: 125%;
-  font-size: 19px;
-  font-weight: 700;
-  margin-top: 5px;
-  border: 0;
-  resize: none;
-}
-
-.delete-image {
-  width: 20px;
-  height: 20px;
-  float: right;
-  margin-top: 10px;
-  background: none;
-  border: none;
-  background-repeat: round;
-  background-image: url("assets/delete.svg")
-}
-
-.new-task-body {
-  font-size: 15px;
-  color:#939598;
-  line-height: 125%;
-  resize: none;
-  border: none;
-  margin: 25px 0;
-}
-
-.new-task-footer {
+.completed-btn-container {
   display: flex;
-  align-items: center;
-  margin: 12px 0 12px 0;
-  border-bottom: 2px solid #D1D3D4;
-}
-
-.upvote-image, .downvote-image {
-  float: left;
-  margin-bottom: 15px;
-}
-
-.upvote-image {
-  width: 20px;
-  height: 20px;
-  float: right;
-  background: none;
-  border: none;
-  background-repeat: round;
-  background-image: url("assets/upvote.svg")
-}
-
-.downvote-image {
-  width: 20px;
-  height: 20px;
-  float: right;
-  margin-left: 5px;
-  background: none;
-  border: none;
-  background-repeat: round;
-  background-image: url("assets/downvote.svg")
+  justify-content: center;
 }
 
 .completed-btn {
@@ -208,24 +100,64 @@ h2, .new-task-header {
   color: #FFFFFF;
   height: 25px;
   width: 100px;
-  margin: 10px auto 0 130px ;
   border: none;
+  border-radius: 25px;
 }
+
+.new-task-header {
+  width: 360px;
+  font-family: 'Roboto Slab', serif;
+  color: #6d6371;
+  line-height: 125%;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.delete-image {
+  width: 20px;
+  height: 20px;
+  float: right;
+  background: none;
+  border: none;
+  background-image: url("assets/delete.svg")
+}
+
+.new-task-body {
+  color:#939598;
+  line-height: 125%;
+  margin: 25px 0;
+}
+
+.new-task-footer {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #D1D3D4;
+}
+
+.upvote-image,
+.downvote-image {
+  float: left;
+  margin: 0 15px 15px 0;;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+}
+
+.upvote-image {
+  background-image: url("assets/upvote.svg")
+}
+
+.downvote-image {
+  background-image: url("assets/downvote.svg")
+}
+
 
 .h3-footer {
   font-family: 'Roboto Slab', serif;
-  padding-right: 5px;
-  margin-left: 5px;
-  margin-bottom: 15px;
-}
-
-img {
-  width: 20px;
 }
 
 h3 {
-  font-size: 83%;
-  float:left;
   margin-bottom: 15px;
 }
 
@@ -271,46 +203,41 @@ h3 {
 }
 
 /*=======================================
->>>>>>>>  @media min400  <<<<<<<<
+>>>>>>>>  @media max800  <<<<<<<<
 ========================================*/
 
-@media screen and (min-width: 400px) {
-
-.input-title  {
-  width: 360px;
-  margin: auto;
-  margin-top: 15px;
+@media (min-width: 800px) {
+  .input-title,
+  .input-task,
+  .button-save,
+  .input-filter,
+  .new-task-header,
+  .new-task-article {
+    width: 550px;
+    transition: 1s;
+  }
 }
 
-h1  {
-  font-size: 38px;
-}
+/*=======================================
+>>>>>>>>  @media max400  <<<<<<<<
+========================================*/
 
-.input-task {
-  width: 360px;
-  height: 34px;
-  padding: 5px;
-  margin: auto;
-  margin-top: 10px;
-}
+@media (max-width: 400px) {
+  h1  {
+    font-size: 38px;
+  }
 
-.button-save {
-  width: 360px;
-  margin: auto;
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
+  .input-task {
+    height: 70px;
+    width: 90%;
+  }
 
-.input-filter {
-  width: 360px;
-  margin: auto;
-  margin-top: 12px;
-  margin-bottom: 10px;
-}
-
-.new-task-article {
-  width: 360px;
-  margin: auto;
-}
-
+  .input-title,
+  .button-save,
+  .input-filter,
+  .new-task-header,
+  .new-task-article {
+    width: 90%;
+    transition: 1s;
+  }
 }
