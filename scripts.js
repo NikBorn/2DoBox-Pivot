@@ -1,3 +1,5 @@
+filterPriority();
+
 $(document).ready(function () {
   for (var i = 0; i < localStorage.length; i++) {
     prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
@@ -217,17 +219,15 @@ $('.input-filter').on('keyup', function () {
   });
 });
 
-filterPriority();
-
 function filterPriority() {
   $('.priority-btn').on('click', function () {
     var buttonValue = $(this).text();
     $('.priority-value').each(function () {
-      var taskValue = $('.priority-value').text();
+      var taskValue = $(this).text();
       if (taskValue.indexOf(buttonValue) != -1) {
-        $(this).closest('.new-task-article').hide();
-      } else {
         $(this).closest('.new-task-article').show();
+      } else {
+        $(this).closest('.new-task-article').hide();
       }
     });
   });
