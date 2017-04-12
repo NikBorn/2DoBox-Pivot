@@ -92,6 +92,13 @@ span {
   justify-content: center;
 }
 
+.priority-filter {
+  width: 360px;
+  display: flex;
+  justify-content: space-around;
+  margin: 15px auto 0;
+}
+
 /*=======================================
 >>>>>>>>  article  <<<<<<<<
 ========================================*/
@@ -242,7 +249,8 @@ button:focus {
   .button-save,
   .input-filter,
   .new-task-header,
-  .new-task-article {
+  .new-task-article,
+  .priority-filter {
     width: 550px;
     transition: 0.5s;
   }
@@ -262,7 +270,8 @@ button:focus {
   .button-save,
   .input-filter,
   .new-task-header,
-  .new-task-article {
+  .new-task-article,
+  .priority-filter {
     width: 90%;
     transition: 0.5s;
   }
