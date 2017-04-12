@@ -174,6 +174,7 @@ $('.new-task-container').on('click', '.delete-image', function () {
   $(this).parent().parent().remove('.new-task-article');
 	$('.new-task-container').html("");
 	loadTasks();
+  hideCompleted();
 	showTen();
 
 });
