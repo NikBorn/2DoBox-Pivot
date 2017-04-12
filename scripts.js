@@ -1,10 +1,11 @@
 filterPriority();
+loadTasks();
 
-$(document).ready(function () {
+function loadTasks() {
   for (var i = 0; i < localStorage.length; i++) {
     prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
   }
-});
+};
 
 $('.input-title, .input-task').on('input', function () {
   var inputTitleVal = $('.input-title').val();
@@ -62,7 +63,6 @@ $('.new-task-container').on('blur', '.new-task-header', function () {
   var id = $(this).closest('.new-task-article').prop('id');
   var parsedObject = JSON.parse(localStorage.getItem(id));
   parsedObject.title = $(this).text();
-  console.log(this);
   localStorage.setItem(id, JSON.stringify(parsedObject));
 });
 
