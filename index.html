@@ -10,16 +10,16 @@
   </head>
   <body>
     <section class="header-wrapper">
-      <header>
+      <header role="banner">
         <h1 class="h1-task">2Do</h1><h1 class="h1-box">Box</h1>
       </header>
-      <form class="form" action="index.html" method="post">
-        <input class="input-title" type="text" name="input1" placeholder="Title" maxlength="30">
-        <input class="input-task" type="text" name="input2" placeholder="Task" maxlength="300">
-        <button class="button-save" type="button" name="save" disabled="true">save</button>
+      <form class="form" role="form">
+        <input class="input-title" type="text" placeholder="Title" maxlength="30">
+        <input class="input-task" type="text" placeholder="Task" maxlength="300">
+        <button class="button-save" disabled>save</button>
       </form>
     </section>
-    <form class="search" action="index.html" method="post">
+    <form class="search" role="form">
       <input class="input-filter" type="text" name="search" placeholder="Filter">
     </form>
     <article class="new-task-container">
