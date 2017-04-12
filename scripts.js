@@ -1,6 +1,11 @@
 filterPriority();
 loadTasks();
 hideCompleted();
+showTen();
+
+function showTen() {
+	$('.new-task-article').slice(10).hide();
+}
 
 
 function loadTasks() {
@@ -42,6 +47,7 @@ $('.button-save').on('click', function () {
   prependTask(task);
   storeObject(task.id, task);
   $('.button-save').prop('disabled', true);
+	showTen();
 });
 
 /*=======================================
@@ -152,6 +158,10 @@ $('.new-task-container').on('click', '.downvote-image', function () {
 $('.new-task-container').on('click', '.delete-image', function () {
   localStorage.removeItem($(this).parent().parent().prop('id'));
   $(this).parent().parent().remove('.new-task-article');
+	$('.new-task-container').html("");
+	loadTasks();
+	showTen();
+
 });
 
 $('.new-task-container').on('click', '.completed-btn', function () {
