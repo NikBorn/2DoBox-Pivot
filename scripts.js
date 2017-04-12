@@ -30,7 +30,7 @@ function Task(title, task) {
   this.task = task;
   this.priority = 'Normal';
   this.id = Date.now();
-	this.status = 'not-complete'
+	this.status = 'not complete'
 };
 
 $('.button-save').on('click', function () {
@@ -163,14 +163,14 @@ $('.new-task-container').on('click', '.completed-btn', function () {
 
 	$this.closest('.new-task-article').toggleClass('completed');
   if ($this.closest('.new-task-article').hasClass('completed')) {
-    $this.text('Completed!');
+    $this.text('completed');
 		taskCard.status = 'completed';
 		console.log('id',id)
 		console.log('taskcard',taskCard)
 		storeObject(id, taskCard);
   } else {
-    $this.text('Not Complete');
-		taskCard.status = 'not-complete';
+    $this.text('not complete');
+		taskCard.status = 'not complete';
 		console.log('id',id)
 		console.log('taskcard', taskCard)
 		storeObject(id, taskCard);
@@ -185,7 +185,7 @@ function prepend(task) {
   $('.new-task-container').prepend(`
     <div id='${task.id}' class='new-task-article ${task.status}'>
 			<div class="completed-btn-container">
-				<button class='completed-btn' type='button'>Not Complete</button>
+				<button class='completed-btn' type='button'>${task.status}</button>
 			</div>
 	    <div class='text-wrapper'>
 				<p class='new-task-header' role="textbox" aria-multiline="true" contenteditable>${task.title}</p>
@@ -231,4 +231,20 @@ function filterPriority() {
       }
     });
   });
+}
+
+// hideCompleted();
+
+function hideCompleted() {
+	var allCards = $('.new-task-container').children();
+	var completeButtonVal = $('.completed-btn').text();
+
+	allCards.each(function() {
+		if (completeButtonVal.indexOf('completed') != -1) {
+		 	$(this).closest('.new-task-article').hide();
+		} else {
+			$(this).closest('.new-task-article').show();
+		}
+
+	})
 }
