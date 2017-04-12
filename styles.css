@@ -99,6 +99,7 @@ span {
 .new-task-article {
   width: 360px;
   margin: 30px auto;
+  padding: 0 10px;
   transition: 0.5s;
 }
 
@@ -110,6 +111,7 @@ span {
 .completed-btn {
   background-color: #00A79D;
   color: #FFFFFF;
+  margin-top: 15px;
   height: 25px;
   width: 100px;
   border: none;
