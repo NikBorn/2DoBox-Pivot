@@ -168,11 +168,11 @@ $('.new-task-container').on('click', '.completed-btn', function () {
 function prepend(task) {
   $('.new-task-container').prepend(`
     <div id='${task.id}' class='new-task-article'>
-		<button class='completed-btn' type='button'><span><p>Not Complete</p></span></button>
+		<button class='completed-btn' type='button'>Not Complete</button>
 	    <div class='text-wrapper'>
-				<p class='new-task-header' contenteditable>${task.title}</p>
+				<p class='new-task-header' role="textbox" aria-multiline="true" contenteditable>${task.title}</p>
 	    	<button class='delete-image' type='button' name='button'></button>
-				<p class='new-task-body' contenteditable>${task.task}</p>
+				<p class='new-task-body' role="textbox" aria-multiline="true" contenteditable>${task.task}</p>
 			</div>
 	    <section class='new-task-footer'>
 				<button class='upvote-image' type='button' name='button'></button>

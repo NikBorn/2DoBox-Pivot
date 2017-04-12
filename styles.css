@@ -31,6 +31,7 @@ body {
 }
 
 header, h1 {
+  color: #00a79d;
   font-family: 'Roboto Slab', serif;
   font-size: 25px;
   margin-top: 10px;
@@ -39,11 +40,7 @@ header, h1 {
   justify-content: center;
 }
 
-.h1-task {
-  color: #00a79d;
-}
-
-.h1-box {
+span {
   color: #6d6e71;
 }
 
@@ -141,16 +138,16 @@ input[value="Title"]:focus {
 }
 
 h2, .new-task-header {
-  width: 200px;
+  width: 100%;
   display: inline-block;
   font-family: 'Roboto Slab', serif;
   color: #6d6371;
+  line-height: 125%;
   font-size: 19px;
   font-weight: 700;
   margin-top: 5px;
   border: 0;
   resize: none;
-  white-space: nowrap;
 }
 
 .delete-image {
@@ -167,6 +164,7 @@ h2, .new-task-header {
 .new-task-body {
   font-size: 15px;
   color:#939598;
+  line-height: 125%;
   resize: none;
   border: none;
   margin: 25px 0;
@@ -277,7 +275,7 @@ h3 {
 ========================================*/
 
 @media screen and (min-width: 400px) {
-  
+
 .input-title  {
   width: 360px;
   margin: auto;

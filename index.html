@@ -11,21 +11,20 @@
   <body>
     <section class="header-wrapper">
       <header role="banner">
-        <h1 class="h1-task">2Do</h1><h1 class="h1-box">Box</h1>
+        <h1>2Do<span>Box</span></h1>
       </header>
       <form class="form" role="form">
-        <input class="input-title" type="text" placeholder="Title" maxlength="30">
-        <input class="input-task" type="text" placeholder="Task" maxlength="300">
+        <input class="input-title" type="text" placeholder="Title">
+        <input class="input-task" type="text" placeholder="Task">
         <button class="button-save" disabled>save</button>
       </form>
     </section>
     <form class="search" role="form">
-      <input class="input-filter" type="text" name="search" placeholder="Filter">
+      <input class="input-filter" type="text" placeholder="Filter">
     </form>
-    <article class="new-task-container">
+    <article class="new-task-container" role="article">
     </article>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
   </body>
-  <footer></footer>
 </html>
