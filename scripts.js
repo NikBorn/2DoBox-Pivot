@@ -1,5 +1,7 @@
 filterPriority();
 loadTasks();
+hideCompleted();
+
 
 function loadTasks() {
   for (var i = 0; i < localStorage.length; i++) {
@@ -233,10 +235,9 @@ function filterPriority() {
   });
 }
 
-hideCompleted();
 
 function hideCompleted() {
-  // $('.complete-filter').on('click', function () {
+
     var filterString = 'completed';
     $('.completed-btn').each(function () {
       var completeButtonVal = $(this).text();
@@ -248,6 +249,12 @@ function hideCompleted() {
     });
   // });
 };
+
+$('.complete-filter').on('click', showCompleted)
+
+function showCompleted() {
+	$('.new-task-article').show();
+}
 
 // 	allCards.each(function() {
 // 		if (completeButtonVal.indexOf('completed') != -1) {
