@@ -27,6 +27,7 @@ function Task(title, task) {
   this.task = task;
   this.priority = 'Normal';
   this.id = Date.now();
+	this.status = 'not-complete'
 };
 
 $('.button-save').on('click', function () {
@@ -151,11 +152,26 @@ $('.new-task-container').on('click', '.delete-image', function () {
 
 $('.new-task-container').on('click', '.completed-btn', function () {
   var $this = $(this);
-  $(this).closest('.new-task-article').toggleClass('completed');
-  if ($(this).closest('.new-task-article').hasClass('completed')) {
+	var card = $this.closest('.new-task-article')
+	var id = card.attr('id')
+	var taskCard = grabObject(id);
+	console.log(id)
+	console.log(taskCard)
+	storeObject(id, taskCard);
+
+	$this.closest('.new-task-article').toggleClass('completed');
+  if ($this.closest('.new-task-article').hasClass('completed')) {
     $this.text('Completed!');
+		taskCard.status = 'completed';
+		console.log('id',id)
+		console.log('taskcard',taskCard)
+		storeObject(id, taskCard);
   } else {
     $this.text('Not Complete');
+		taskCard.status = 'not-complete';
+		console.log('id',id)
+		console.log('taskcard', taskCard)
+		storeObject(id, taskCard);
   };
 });
 
@@ -165,7 +181,7 @@ $('.new-task-container').on('click', '.completed-btn', function () {
 
 function prepend(task) {
   $('.new-task-container').prepend(`
-    <div id='${task.id}' class='new-task-article'>
+    <div id='${task.id}' class='new-task-article ${task.status}'>
 			<div class="completed-btn-container">
 				<button class='completed-btn' type='button'>Not Complete</button>
 			</div>
