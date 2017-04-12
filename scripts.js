@@ -25,7 +25,7 @@ $('.input-title, .input-task').on('input', function() {
 function Task(title, task) {
 	this.title = title;
 	this.task = task;
-	this.quality = "swill";
+	this.quality = "Normal";
 	this.id = Date.now();
 }
 
@@ -75,20 +75,53 @@ $(".new-task-container").on("blur", '.new-task-body', function() {
 >>>>>>>>  Click Events <<<<<<<<
 ========================================*/
 
+function changeQualityToLow(id) {
+	var newObject = grabObject(id);
+	newObject.quality = "Low";
+	storeObject(id, newObject);
+}
+
+function changeQualityToNormal(id) {
+	var newObject = grabObject(id);
+	newObject.quality = "Normal";
+	storeObject(id, newObject);
+}
+
+function changeQualityToHigh(id) {
+	var newObject = grabObject(id);
+	newObject.quality = "High";
+	storeObject(id, newObject);
+}
+
+function changeQualityToCritical(id) {
+	var newObject = grabObject(id);
+	newObject.quality = "Critical";
+	storeObject(id, newObject);
+}
+
+function changeQualityToNone(passId) {
+	var newObject = grabObject(passId);
+	newObject.quality = "None";
+	storeObject(passId, newObject);
+}
+
 $(".new-task-container").on("click", ".upvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	var parshedQuality = grabObject(id).quality
-
-	if (parshedQuality == "swill") {
-		newObject.quality = "plausible"
-		$(this).siblings().last().text("plausible")
-		storeObject(id, newObject)
-
-	} else if (parshedQuality == "plausible") {
-		newObject.quality = "genius"
-		$(this).siblings().last().text("genius")
-		storeObject(id, newObject)
+	var passId = id
+	if (parshedQuality == "None") {
+		changeQualityToLow(passId);
+		$(this).siblings().last().text("Low");
+	} else if (parshedQuality == "Low") {
+		changeQualityToNormal(passId);
+		$(this).siblings().last().text("Normal");
+	} else if (parshedQuality == "Normal") {
+		changeQualityToHigh(passId);
+		$(this).siblings().last().text("High");
+	} else if (parshedQuality == "High") {
+		changeQualityToCritical(passId);
+		$(this).siblings().last().text("Critical");
 	}
 })
 
@@ -96,16 +129,19 @@ $(".new-task-container").on("click", ".downvote-image", function() {
 	var id = $(this).parent().parent().prop('id');
 	var newObject = grabObject(id)
 	var parshedQuality = grabObject(id).quality
-
-	if (parshedQuality == "genius") {
-		newObject.quality = "plausible"
-		$(this).siblings().last().text("plausible")
-		storeObject(id, newObject)
-
-	} else if (parshedQuality == "plausible") {
-		newObject.quality = "swill"
-		$(this).siblings().last().text("swill")
-		storeObject(id, newObject)
+	var passId = id
+	if (parshedQuality == "Critical") {
+		changeQualityToHigh(passId);
+		$(this).siblings().last().text("High");
+	} else if (parshedQuality == "High") {
+		changeQualityToNormal(passId);
+		$(this).siblings().last().text("Normal");
+	} else if (parshedQuality == "Normal") {
+		changeQualityToLow(passId);
+		$(this).siblings().last().text("Low");
+	} else if (parshedQuality == "Low") {
+		$(this).siblings().last().text("None");
+		changeQualityToNone(passId);
 	}
 })
 
@@ -114,6 +150,18 @@ $(".new-task-container").on('click', '.delete-image', function() {
 	$(this).parent().parent().remove('.new-task-article');
 });
 
+// NOTE: I can't get it to change BACK from Completed!
+$('.new-task-container').on('click', '.completed-btn', function() {
+	$(this).closest('.new-task-article').toggleClass('completed');
+	// $(this).closest('p').toggleClass('completed-btn-text');
+	// var completedStatus = $(this);
+	if ($(this).text('Not Complete')) {
+		$(this).text('Completed!');
+	} else if ($(this).text('Completed!')) {
+		$(this).text('Not Complete');
+	}
+})
+
 /*=======================================
 >>>>>>>>  Prepend  <<<<<<<<
 ========================================*/
@@ -121,7 +169,7 @@ $(".new-task-container").on('click', '.delete-image', function() {
 function prepend(task) {
 	$(".new-task-container").prepend(`
     <div id="${task.id}" class="new-task-article">
-		<button class="completed-btn" type="button">Not Complete</button>
+		<button class="completed-btn" type="button"><span><p>Not Complete</p></span></button>
 	    <div class="text-wrapper">
 				<p class="new-task-header" contenteditable>${task.title}</p>
 	    	<button class="delete-image" type="button" name="button"></button>
@@ -153,3 +201,6 @@ $('.input-filter').on('keyup', function() {
 		}
 	})
 })
+
+
+// delete this shit
