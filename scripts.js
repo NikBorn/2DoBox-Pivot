@@ -168,7 +168,9 @@ $('.new-task-container').on('click', '.completed-btn', function () {
 function prepend(task) {
   $('.new-task-container').prepend(`
     <div id='${task.id}' class='new-task-article'>
-		<button class='completed-btn' type='button'>Not Complete</button>
+			<div class="completed-btn-container">
+				<button class='completed-btn' type='button'>Not Complete</button>
+			</div>
 	    <div class='text-wrapper'>
 				<p class='new-task-header' role="textbox" aria-multiline="true" contenteditable>${task.title}</p>
 	    	<button class='delete-image' type='button' name='button'></button>
@@ -177,7 +179,7 @@ function prepend(task) {
 	    <section class='new-task-footer'>
 				<button class='upvote-image' type='button' name='button'></button>
 				<button class='downvote-image' type='button' name='button'></button>
-	    	<h3 class='h3-footer'>priority:</h3><h3>${task.priority}</h3>
+	    	<h3 class='h3-footer'>priority: &nbsp;&nbsp; </h3><h3>${task.priority}</h3>
 	    </section>
     </div>
     `);
