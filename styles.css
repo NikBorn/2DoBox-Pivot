@@ -51,13 +51,19 @@ span {
 .input-task,
 .input-filter {
   border: 2px solid #D1D3D4;
-  color:#D1D3D4;
+  color:#6d6e71;
   font-family: 'Open Sans', sans-serif;
   font-size: 20px;
   margin: 20px auto 0;
   padding: 5px;
-  transition: 1s;
+  transition: 0.5s;
   width: 360px;
+}
+
+.input-title::placeholder,
+.input-task::placeholder,
+.input-filter::placeholder {
+  color: rgba(4, 94, 85, 0.4);
 }
 
 .button-save {
@@ -68,8 +74,13 @@ span {
   background: #00a79d;
   border: none;
   border-radius: 25px;
+  transition: 0.5s;
   width: 360px;
+}
 
+.button-save:hover {
+  background-color: #045e55;
+  transition: 0.25s;
 }
 
 .button-save:disabled {
@@ -88,6 +99,7 @@ span {
 .new-task-article {
   width: 360px;
   margin: 30px auto;
+  transition: 0.5s;
 }
 
 .completed-btn-container {
@@ -102,6 +114,12 @@ span {
   width: 100px;
   border: none;
   border-radius: 25px;
+  transition: 0.25s;
+}
+
+.completed-btn:hover {
+  background-color: #045e55;
+  transition: 0.25s;
 }
 
 .new-task-header {
@@ -152,7 +170,6 @@ span {
   background-image: url("assets/downvote.svg")
 }
 
-
 .h3-footer {
   font-family: 'Roboto Slab', serif;
 }
@@ -202,6 +219,17 @@ h3 {
   text-decoration: line-through;
 }
 
+input:focus {
+  outline-style: solid;
+  outline-color: rgba(0, 167, 157, 0.4);
+  outline-width: thin;
+  transition: none;
+}
+
+button:focus {
+  outline: none;
+}
+
 /*=======================================
 >>>>>>>>  @media max800  <<<<<<<<
 ========================================*/
@@ -214,7 +242,7 @@ h3 {
   .new-task-header,
   .new-task-article {
     width: 550px;
-    transition: 1s;
+    transition: 0.5s;
   }
 }
 
@@ -223,10 +251,6 @@ h3 {
 ========================================*/
 
 @media (max-width: 400px) {
-  h1  {
-    font-size: 38px;
-  }
-
   .input-task {
     height: 70px;
     width: 90%;
@@ -238,6 +262,6 @@ h3 {
   .new-task-header,
   .new-task-article {
     width: 90%;
-    transition: 1s;
+    transition: 0.5s;
   }
 }
