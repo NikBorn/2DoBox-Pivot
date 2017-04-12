@@ -3,7 +3,7 @@ loadTasks();
 
 function loadTasks() {
   for (var i = 0; i < localStorage.length; i++) {
-    prepend(JSON.parse(localStorage.getItem(localStorage.key(i))));
+    prependTask(JSON.parse(localStorage.getItem(localStorage.key(i))));
   }
 };
 
@@ -35,10 +35,10 @@ function Task(title, task) {
 
 $('.button-save').on('click', function () {
   var title = $('.input-title').val();
-  var task = $('.input-task').val();
-  var task = new Task(title, task);
-  prepend(task);
-  sendToStorage(task);
+  var body = $('.input-task').val();
+  var task = new Task(title, body);
+  prependTask(task);
+  storeObject(task.id, task);
   $('.button-save').prop('disabled', true);
 });
 
@@ -181,7 +181,7 @@ $('.new-task-container').on('click', '.completed-btn', function () {
 >>>>>>>>  Prepend  <<<<<<<<
 ========================================*/
 
-function prepend(task) {
+function prependTask(task) {
   $('.new-task-container').prepend(`
     <div id='${task.id}' class='new-task-article ${task.status}'>
 			<div class="completed-btn-container">
@@ -233,18 +233,28 @@ function filterPriority() {
   });
 }
 
-// hideCompleted();
+hideCompleted();
 
 function hideCompleted() {
-	var allCards = $('.new-task-container').children();
-	var completeButtonVal = $('.completed-btn').text();
+  // $('.complete-filter').on('click', function () {
+    var filterString = 'completed';
+    $('.completed-btn').each(function () {
+      var completeButtonVal = $(this).text();
+      if (completeButtonVal.indexOf(filterString) != -1) {
+        $(this).closest('.new-task-article').hide();
+      } else {
+        $(this).closest('.new-task-article').show();
+      }
+    });
+  // });
+};
 
-	allCards.each(function() {
-		if (completeButtonVal.indexOf('completed') != -1) {
-		 	$(this).closest('.new-task-article').hide();
-		} else {
-			$(this).closest('.new-task-article').show();
-		}
-
-	})
-}
+// 	allCards.each(function() {
+// 		if (completeButtonVal.indexOf('completed') != -1) {
+// 		 	$(this).closest('.new-task-article').hide();
+// 		} else {
+// 			$(this).closest('.new-task-article').show();
+// 		}
+//
+// 	})
+// }
