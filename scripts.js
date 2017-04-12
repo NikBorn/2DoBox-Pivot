@@ -245,6 +245,7 @@ function filterPriority() {
   });
 }
 
+$('.show-more').on('click', hideCompleted) 
 
 function hideCompleted() {
 
