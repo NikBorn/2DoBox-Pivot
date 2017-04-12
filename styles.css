@@ -133,6 +133,7 @@ input[value="Title"]:focus {
   width: 90%;
   margin: auto;
   /*border-bottom: 2px solid #D1D3D4;*/
+  padding: 5px;
 }
 
 .title-container {
@@ -209,7 +210,7 @@ h2, .new-task-header {
   color: #FFFFFF;
   height: 25px;
   width: 100px;
-  margin: 0 10px 10px 135px;
+  margin: 10px auto 0 130px ;
   border: none;
 }
 
@@ -251,10 +252,10 @@ h3 {
 }
 
 /*=======================================
->>>>>>>>  hover properties  <<<<<<<<
+>>>>>>>>  hover properties and states <<<<<<<<
 ========================================*/
 
-.delete-image:hover{
+.delete-image:hover {
   background-image: url("assets/delete-hover.svg");
 }
 
@@ -262,8 +263,13 @@ h3 {
   background-image: url("assets/upvote-hover.svg");
 }
 
-.downvote-image:hover{
+.downvote-image:hover {
   background-image: url("assets/downvote-hover.svg");
+}
+
+.completed {
+  background-color: #E5F3F2;
+  text-decoration: line-through;
 }
 
 /*=======================================
@@ -271,7 +277,7 @@ h3 {
 ========================================*/
 
 @media screen and (min-width: 400px) {
-
+  
 .input-title  {
   width: 360px;
   margin: auto;
