@@ -193,7 +193,7 @@ function prepend(task) {
 	    <section class='new-task-footer'>
 				<button class='upvote-image' type='button' name='button'></button>
 				<button class='downvote-image' type='button' name='button'></button>
-	    	<h3 class='h3-footer'>priority: &nbsp;&nbsp; </h3><h3>${task.priority}</h3>
+	    	<h3 class='h3-footer'>priority: &nbsp;&nbsp; </h3><h3 class="priority-value">${task.priority}</h3>
 	    </section>
     </div>
     `);
@@ -216,3 +216,19 @@ $('.input-filter').on('keyup', function () {
     }
   });
 });
+
+filterPriority();
+
+function filterPriority() {
+  $('.priority-btn').on('click', function () {
+    var buttonValue = $(this).text();
+    $('.priority-value').each(function () {
+      var taskValue = $('.priority-value').text();
+      if (taskValue.indexOf(buttonValue) != -1) {
+        $(this).closest('.new-task-article').hide();
+      } else {
+        $(this).closest('.new-task-article').show();
+      }
+    });
+  });
+}
