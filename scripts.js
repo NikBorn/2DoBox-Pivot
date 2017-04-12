@@ -149,15 +149,13 @@ $('.new-task-container').on('click', '.delete-image', function () {
   $(this).parent().parent().remove('.new-task-article');
 });
 
-// NOTE: I can't get it to change BACK from Completed!
 $('.new-task-container').on('click', '.completed-btn', function () {
+  var $this = $(this);
   $(this).closest('.new-task-article').toggleClass('completed');
-  // $(this).closest('p').toggleClass('completed-btn-text');
-  // var completedStatus = $(this);
-  if ($(this).text('Not Complete')) {
-    $(this).text('Completed!');
-  } else if ($(this).text('Completed!')) {
-    $(this).text('Not Complete');
+  if ($(this).closest('.new-task-article').hasClass('completed')) {
+    $this.text('Completed!');
+  } else {
+    $this.text('Not Complete');
   };
 });
 
