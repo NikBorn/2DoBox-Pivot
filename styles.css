@@ -92,6 +92,24 @@ span {
   justify-content: center;
 }
 
+.priority-filter {
+  width: 360px;
+  display: block;
+  margin: 15px auto 0;
+  text-align: center;
+}
+
+.priority-btn {
+  width: 50px;
+  border: 1px solid #00A79D;
+  border-radius: 10px;
+  background-color: inherit;
+}
+
+.priority-btn:hover {
+  background-color: #00A79D;
+}
+
 /*=======================================
 >>>>>>>>  article  <<<<<<<<
 ========================================*/
@@ -233,7 +251,7 @@ button:focus {
 }
 
 /*=======================================
->>>>>>>>  @media max800  <<<<<<<<
+>>>>>>>>  @media min800  <<<<<<<<
 ========================================*/
 
 @media (min-width: 800px) {
@@ -242,9 +260,22 @@ button:focus {
   .button-save,
   .input-filter,
   .new-task-header,
-  .new-task-article {
+  .new-task-article,
+  .priority-filter {
     width: 550px;
     transition: 0.5s;
+  }
+
+  .priority-filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .priority-filter p {
+    margin: 0 auto 15px;
   }
 }
 
@@ -262,8 +293,18 @@ button:focus {
   .button-save,
   .input-filter,
   .new-task-header,
-  .new-task-article {
+  .new-task-article,
+  .priority-filter {
     width: 90%;
     transition: 0.5s;
+  }
+
+  .priority-filter {
+    display: block;
+    text-align: center;
+  }
+
+  .priority-filter p {
+    margin: 0 auto 15px;
   }
 }
