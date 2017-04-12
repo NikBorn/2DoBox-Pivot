@@ -106,8 +106,25 @@ span {
   background-color: inherit;
 }
 
+.filter-show-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.complete-filter-btn,
+.show-more-btn {
+  width: 150px;
+  border: 1px solid #00A79D;
+  border-radius: 10px;
+  background-color: inherit;
+  margin: 15px auto;
+}
+
+.complete-filter-btn:hover,
+.show-more-btn:hover,
 .priority-btn:hover {
   background-color: #00A79D;
+  color: white;
 }
 
 /*=======================================
