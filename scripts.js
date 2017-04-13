@@ -1,13 +1,14 @@
 
 
 $(document).ready(executeFunctionsOnPageLoad);
-$('.input-title, .input-task').on('input', checkDisableSaveButton);
+$('.input-title, .input-task').on('input', enableSaveButton);
 $('.button-save').on('click', saveTask);
 $('.new-task-container').on('blur', '.new-task-header', changeTaskTitle);
 $('.new-task-container').on('blur', '.new-task-body', changeTaskBody);
 $('.complete-filter-btn').on('click', showCompleted);
 $('.new-task-container').on('click', '.delete-image', deleteTask);
 $('.input-filter').on('keyup', filter2Dos);
+$('.show-more-btn').on('click', hideCompleted);
 
 function executeFunctionsOnPageLoad() {
   filterPriority();
@@ -26,19 +27,13 @@ function loadTasks() {
   }
 };
 
-function checkDisableSaveButton() {
+function enableSaveButton() {
   var inputTitleVal = $('.input-title').val();
   var inputTaskVal = $('.input-task').val();
-  if (inputTitleVal == '' || inputTaskVal == '') {
-    $('.button-save').attr('disabled', true);
-  } else if (inputTitleVal == 'Title') {
-    $('.button-save').attr('disabled', true);
-  } else if (inputTaskVal == 'Task') {
-    $('.button-save').attr('disabled', true);
-  } else {
+  if (inputTitleVal !== '' && inputTaskVal !== '') {
     $('.button-save').attr('disabled', false);
   };
-}
+};
 
 /*=======================================
 >>>>>>>>  Constructor / New  <<<<<<<<
@@ -182,7 +177,7 @@ function deleteTask() {
   $(this).parent().parent().remove('.new-task-article');
   $('.new-task-container').html('');
   loadTasks();
-  hideCompleted();
+  // hideCompleted();
   showTen();
 };
 
@@ -261,11 +256,6 @@ function filterPriority() {
   });
 };
 
-// NOTE: the button is saying show less, but never show more.
-// NOTE: also the hide completed tasks isn't working.
-$('.show-more-btn').on('click', hideCompleted);
-$('.show-more-btn').text('Show Less');
-
 function hideCompleted() {
   var filterString = 'completed';
   $('.completed-btn').each(function () {
@@ -280,5 +270,4 @@ function hideCompleted() {
 
 function showCompleted() {
   $('.new-task-article').show();
-  $('.complete-filter-btn').text('Hide Completed Tasks');
 };
