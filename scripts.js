@@ -12,6 +12,7 @@ $('.show-more-btn').on('click', hideCompleted);
 $('.new-task-container').on('click', '.completed-btn', completeStatus);
 $('.new-task-container').on('click', '.upvote-image', changeUpvote);
 $('.new-task-container').on('click', '.downvote-image', changeDownvote);
+$('.new-task-container').on('keydown', enableEnter)
 
 function executeFunctionsOnPageLoad() {
   filterPriority();
@@ -80,12 +81,12 @@ function changeTaskTitle() {
   localStorage.setItem(id, JSON.stringify(parsedObject));
 }
 
-$('.new-task-header').on('keydown', function (e) {
-  if (e.which == 13) {
-    e.preventDefault();
-    $(this).blur();
-  };
-});
+function enableEnter() {
+	if (event.which == 13) {
+		event.preventDefault();
+		$(event.target).blur();
+	};
+}
 
 function changeTaskBody() {
   var id = $(this).closest('.new-task-article').prop('id');
@@ -93,13 +94,6 @@ function changeTaskBody() {
   parsedObject.task = $(this).text();
   localStorage.setItem(id, JSON.stringify(parsedObject));
 };
-
-$('.new-task-body').on('keydown', function (e) {
-  if (e.which == 13) {
-    e.preventDefault();
-    $(this).blur();
-  };
-});
 
 /*=======================================
 >>>>>>>>  Click Events <<<<<<<<

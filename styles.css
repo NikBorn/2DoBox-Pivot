@@ -67,10 +67,8 @@ span {
 }
 
 .button-save {
-  background: #00a79d;
   border: none;
   border-radius: 25px;
-  color: white;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   margin: 20px auto 20px;
@@ -120,9 +118,11 @@ span {
   width: 150px;
 }
 
+.button-save,
 .complete-filter-btn:hover,
 .show-more-btn:hover,
-.priority-btn:hover {
+.priority-btn:hover,
+.completed-btn {
   background-color: #00A79D;
   color: white;
 }
@@ -147,7 +147,6 @@ span {
   background-color: #00A79D;
   border: none;
   border-radius: 25px;
-  color: #FFFFFF;
   margin-top: 15px;
   height: 25px;
   width: 100px;
