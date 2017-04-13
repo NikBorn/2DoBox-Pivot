@@ -1,7 +1,21 @@
-filterPriority();
-loadTasks();
-hideCompleted();
-showTen();
+
+
+$(document).ready(executeFunctionsOnPageLoad)
+$('.input-title, .input-task').on('input', checkDisableSaveButton)
+$('.button-save').on('click', saveTask);
+$('.new-task-container').on('blur', '.new-task-header', changeTaskTitle);
+$('.new-task-container').on('blur', '.new-task-body', changeTaskBody);
+$('.complete-filter-btn').on('click', showCompleted);
+$('.new-task-container').on('click', '.delete-image', deleteTask)
+$('.input-filter').on('keyup', filter2Dos)
+
+
+function executeFunctionsOnPageLoad() {
+	filterPriority();
+	loadTasks();
+	hideCompleted();
+	showTen();
+}
 
 function showTen() {
   $('.new-task-article').slice(10).hide();
@@ -13,19 +27,20 @@ function loadTasks() {
   }
 };
 
-$('.input-title, .input-task').on('input', function () {
-  var inputTitleVal = $('.input-title').val();
-  var inputTaskVal = $('.input-task').val();
-  if (inputTitleVal == '' || inputTaskVal == '') {
-    $('.button-save').attr('disabled', true);
-  } else if (inputTitleVal == 'Title') {
-    $('.button-save').attr('disabled', true);
-  } else if (inputTaskVal == 'Task') {
-    $('.button-save').attr('disabled', true);
-  } else {
-    $('.button-save').attr('disabled', false);
-  };
-});
+
+function checkDisableSaveButton() {
+	var inputTitleVal = $('.input-title').val();
+	var inputTaskVal = $('.input-task').val();
+	if (inputTitleVal == '' || inputTaskVal == '') {
+		$('.button-save').attr('disabled', true);
+	} else if (inputTitleVal == 'Title') {
+		$('.button-save').attr('disabled', true);
+	} else if (inputTaskVal == 'Task') {
+		$('.button-save').attr('disabled', true);
+	} else {
+		$('.button-save').attr('disabled', false);
+	};
+}
 
 /*=======================================
 >>>>>>>>  Constructor / New  <<<<<<<<
@@ -39,15 +54,16 @@ function Task(title, task) {
   this.status = 'not complete';
 };
 
-$('.button-save').on('click', function () {
-  var title = $('.input-title').val();
-  var body = $('.input-task').val();
-  var task = new Task(title, body);
-  prependTask(task);
-  storeObject(task.id, task);
-  $('.button-save').prop('disabled', true);
-  showTen();
-});
+
+function saveTask() {
+	var title = $('.input-title').val();
+	var body = $('.input-task').val();
+	var task = new Task(title, body);
+	prependTask(task);
+	storeObject(task.id, task);
+	$('.button-save').prop('disabled', true);
+	showTen();
+}
 
 /*=======================================
 >>>>>>>>  localStorage  <<<<<<<<
@@ -62,12 +78,13 @@ function storeObject(id, newObject) {
   localStorage.setItem(id, JSON.stringify(newObject));
 };
 
-$('.new-task-container').on('blur', '.new-task-header', function () {
-  var id = $(this).closest('.new-task-article').prop('id');
-  var parsedObject = JSON.parse(localStorage.getItem(id));
-  parsedObject.title = $(this).text();
-  localStorage.setItem(id, JSON.stringify(parsedObject));
-});
+
+function changeTaskTitle() {
+	var id = $(this).closest('.new-task-article').prop('id');
+	var parsedObject = JSON.parse(localStorage.getItem(id));
+	parsedObject.title = $(this).text();
+	localStorage.setItem(id, JSON.stringify(parsedObject));
+}
 
 $('.new-task-header').on('keydown', function (e) {
   if (e.which == 13) {
@@ -76,12 +93,13 @@ $('.new-task-header').on('keydown', function (e) {
   };
 });
 
-$('.new-task-container').on('blur', '.new-task-body', function () {
-  var id = $(this).closest('.new-task-article').prop('id');
-  var parsedObject = JSON.parse(localStorage.getItem(id));
-  parsedObject.task = $(this).text();
-  localStorage.setItem(id, JSON.stringify(parsedObject));
-});
+function changeTaskBody() {
+	var id = $(this).closest('.new-task-article').prop('id');
+	var parsedObject = JSON.parse(localStorage.getItem(id));
+	parsedObject.task = $(this).text();
+	localStorage.setItem(id, JSON.stringify(parsedObject));
+}
+
 
 $('.new-task-body').on('keydown', function (e) {
   if (e.which == 13) {
@@ -164,15 +182,15 @@ $('.new-task-container').on('click', '.downvote-image', function () {
   };
 });
 
-$('.new-task-container').on('click', '.delete-image', function () {
-  localStorage.removeItem($(this).parent().parent().prop('id'));
-  $(this).parent().parent().remove('.new-task-article');
-  $('.new-task-container').html('');
-  loadTasks();
-  hideCompleted();
-  showTen();
+function deleteTask() {
+	localStorage.removeItem($(this).parent().parent().prop('id'));
+	$(this).parent().parent().remove('.new-task-article');
+	$('.new-task-container').html('');
+	loadTasks();
+	hideCompleted();
+	showTen();
+}
 
-});
 
 $('.new-task-container').on('click', '.completed-btn', function () {
   var $this = $(this);
@@ -223,17 +241,18 @@ function prependTask(task) {
 >>>>>>>>  Key Press / Key Up Events <<<<<<<<
 ========================================*/
 
-$('.input-filter').on('keyup', function () {
-  var filterInput = $(this).val().toLowerCase();
-  $('.text-wrapper').each(function () {
-    var cardText = $(this).text().toLowerCase();
-    if (cardText.indexOf(filterInput) != -1) {
-      $(this).parent().show();
-    } else {
-      $(this).parent().hide();
-    }
-  });
-});
+
+function filter2Dos() {
+	var filterInput = $(this).val().toLowerCase();
+	$('.text-wrapper').each(function () {
+		var cardText = $(this).text().toLowerCase();
+		if (cardText.indexOf(filterInput) != -1) {
+			$(this).parent().show();
+		} else {
+			$(this).parent().hide();
+		}
+	});
+}
 
 function filterPriority() {
   $('.priority-btn').on('click', function () {
@@ -248,7 +267,8 @@ function filterPriority() {
     });
   });
 }
-
+// NOTE: the button is saying show less, but never show more.
+// NOTE: also the hide completed tasks isn't working.
 $('.show-more-btn').on('click', hideCompleted);
 $('.show-more-btn').text('Show Less');
 
@@ -264,7 +284,6 @@ function hideCompleted() {
   });
 };
 
-$('.complete-filter-btn').on('click', showCompleted);
 
 function showCompleted() {
   $('.new-task-article').show();
