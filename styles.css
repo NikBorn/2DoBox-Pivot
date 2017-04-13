@@ -8,8 +8,8 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
+  height: 100%;
   width: 100%;
-  height: 100%
 }
 
 /*=======================================
@@ -19,18 +19,18 @@ body {
 .header-wrapper {
   background: #e5f3f2;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
 
 header, h1 {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
   color: #00a79d;
   font-family: 'Roboto Slab', serif;
   font-size: 38px;
   margin-top: 10px;
-  display: inline-block;
-  display: flex;
-  justify-content: center;
 }
 
 span {
@@ -67,13 +67,13 @@ span {
 }
 
 .button-save {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  margin: 20px auto 20px;
-  color: white;
   background: #00a79d;
   border: none;
   border-radius: 25px;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: 20px auto 20px;
   transition: 0.5s;
   width: 360px;
 }
@@ -93,17 +93,17 @@ span {
 }
 
 .priority-filter {
-  width: 360px;
   display: block;
   margin: 15px auto 0;
   text-align: center;
+  width: 360px;
 }
 
 .priority-btn {
-  width: 50px;
+  background-color: inherit;
   border: 1px solid #00A79D;
   border-radius: 10px;
-  background-color: inherit;
+  width: 50px;
 }
 
 .filter-show-btns {
@@ -113,11 +113,11 @@ span {
 
 .complete-filter-btn,
 .show-more-btn {
-  width: 150px;
   border: 1px solid #00A79D;
   border-radius: 10px;
   background-color: inherit;
   margin: 15px auto;
+  width: 150px;
 }
 
 .complete-filter-btn:hover,
@@ -132,10 +132,10 @@ span {
 ========================================*/
 
 .new-task-article {
-  width: 360px;
   margin: 30px auto;
   padding: 0 10px;
   transition: 0.5s;
+  width: 360px;
 }
 
 .completed-btn-container {
@@ -145,12 +145,12 @@ span {
 
 .completed-btn {
   background-color: #00A79D;
+  border: none;
+  border-radius: 25px;
   color: #FFFFFF;
   margin-top: 15px;
   height: 25px;
   width: 100px;
-  border: none;
-  border-radius: 25px;
   transition: 0.25s;
 }
 
@@ -160,21 +160,21 @@ span {
 }
 
 .new-task-header {
-  width: 360px;
-  font-family: 'Roboto Slab', serif;
   color: #6d6371;
-  line-height: 125%;
+  font-family: 'Roboto Slab', serif;
   font-size: 20px;
+  line-height: 125%;
   margin-top: 10px;
+  width: 360px;
 }
 
 .delete-image {
-  width: 20px;
-  height: 20px;
-  float: right;
   background: none;
   border: none;
-  background-image: url("assets/delete.svg")
+  background-image: url("assets/delete.svg");
+  float: right;
+  height: 20px;
+  width: 20px;
 }
 
 .new-task-body {
@@ -191,12 +191,12 @@ span {
 
 .upvote-image,
 .downvote-image {
+  background: none;
+  border: none;
   float: left;
   margin: 0 15px 15px 0;;
-  width: 20px;
   height: 20px;
-  border: none;
-  background: none;
+  width: 20px;
 }
 
 .upvote-image {
@@ -221,11 +221,11 @@ h3 {
 
 .footer-box {
   background: #e5f3f2;
-  margin: auto;
-  width: 200px;
-  height: 20px;
   border-radius: 10px;
+  margin: auto;
   margin-top: 20px;
+  height: 20px;
+  width: 200px;
 }
 
 .footer-text  {
@@ -255,7 +255,8 @@ h3 {
   background-color: #E5F3F2;
   text-decoration: line-through;
 }
-
+.new-task-header:focus,
+.new-task-body:focus,
 input:focus {
   outline-style: solid;
   outline-color: rgba(0, 167, 157, 0.4);
