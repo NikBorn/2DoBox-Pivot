@@ -9,6 +9,9 @@ $('.complete-filter-btn').on('click', showCompleted);
 $('.new-task-container').on('click', '.delete-image', deleteTask);
 $('.input-filter').on('keyup', filter2Dos);
 $('.show-more-btn').on('click', hideCompleted);
+$('.new-task-container').on('click', '.completed-btn', completeStatus);
+$('.new-task-container').on('click', '.upvote-image', changeUpvote);
+$('.new-task-container').on('click', '.downvote-image', changeDownvote);
 
 function executeFunctionsOnPageLoad() {
   filterPriority();
@@ -132,45 +135,43 @@ function changePriorityToNone(passId) {
   storeObject(passId, newObject);
 }
 
-$('.new-task-container').on('click', '.upvote-image', function () {
+function changeUpvote() {
   var id = $(this).parent().parent().prop('id');
   var newObject = grabObject(id);
   var parsedPriority = grabObject(id).priority;
-  var passId = id;
   if (parsedPriority == 'None') {
-    changePriorityToLow(passId);
+    changePriorityToLow(id);
     $(this).siblings().last().text('Low');
   } else if (parsedPriority == 'Low') {
-    changePriorityToNormal(passId);
+    changePriorityToNormal(id);
     $(this).siblings().last().text('Normal');
   } else if (parsedPriority == 'Normal') {
-    changePriorityToHigh(passId);
+    changePriorityToHigh(id);
     $(this).siblings().last().text('High');
   } else if (parsedPriority == 'High') {
-    changePriorityToCritical(passId);
+    changePriorityToCritical(id);
     $(this).siblings().last().text('Critical');
   };
-});
+};
 
-$('.new-task-container').on('click', '.downvote-image', function () {
+function changeDownvote() {
   var id = $(this).parent().parent().prop('id');
   var newObject = grabObject(id);
   var parsedPriority = grabObject(id).priority;
-  var passId = id;
   if (parsedPriority == 'Critical') {
-    changePriorityToHigh(passId);
+    changePriorityToHigh(id);
     $(this).siblings().last().text('High');
   } else if (parsedPriority == 'High') {
-    changePriorityToNormal(passId);
+    changePriorityToNormal(id);
     $(this).siblings().last().text('Normal');
   } else if (parsedPriority == 'Normal') {
-    changePriorityToLow(passId);
+    changePriorityToLow(id);
     $(this).siblings().last().text('Low');
   } else if (parsedPriority == 'Low') {
     $(this).siblings().last().text('None');
-    changePriorityToNone(passId);
+    changePriorityToNone(id);
   };
-});
+};
 
 function deleteTask() {
   localStorage.removeItem($(this).parent().parent().prop('id'));
@@ -181,24 +182,22 @@ function deleteTask() {
   showTen();
 };
 
-$('.new-task-container').on('click', '.completed-btn', function () {
-  var $this = $(this);
-  var card = $this.closest('.new-task-article');
+function completeStatus() {
+  var card = $(this).closest('.new-task-article');
   var id = card.attr('id');
   var taskCard = grabObject(id);
   storeObject(id, taskCard);
-
-  $this.closest('.new-task-article').toggleClass('completed');
-  if ($this.closest('.new-task-article').hasClass('completed')) {
-    $this.text('completed');
+  $(this).closest('.new-task-article').toggleClass('completed');
+  if ($(this).closest('.new-task-article').hasClass('completed')) {
+    $(this).text('completed');
     taskCard.status = 'completed';
     storeObject(id, taskCard);
   } else {
-    $this.text('not complete');
+    $(this).text('not complete');
     taskCard.status = 'not complete';
     storeObject(id, taskCard);
   };
-});
+};
 
 /*=======================================
 >>>>>>>>  Prepend  <<<<<<<<
